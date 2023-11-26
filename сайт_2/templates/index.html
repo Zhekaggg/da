@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Рецепты</title>
+    <meta charset="UTF-8">
+    <link href="{{ url_for('static', filename='css/rviain.css') }}" rel="stylesheet" type="text/css">
+    <script src="{{ url_for('static', filename='js/script.js')}}"></script>
+</head>
+</head>
+<body>
+    <header>
+        <div class="h1">
+            <li><a href="/">Рецепты</a></li>
+        </div>
+        
+        
+        <div id="genre-buttons" >
+            {% for genre in genres %}
+                <button data-genre="{{ genre.id }}">{{ genre.name }}</button>
+            {% endfor %}
+        </div>
+    </header>
+    
+    <div id="movie-list" class="momoko">
+        <div class="kok">
+        {% for movie in movies %}
+            <div class="movie-card" data-genre="{% for genre in movie.genres %}{{ genre.id }},{% endfor %}">
+                
+                <div class="card shadow">
+
+                    <p class="title1"> {{ movie.name }}</p>
+                            <div class="imag-cont">
+                                <img src= "{{ movie.image_url }}"  height="230">
+                            </div >
+                        
+                            <button class="btn-details">Подробнее</button>
+                                <div class="modal" style="display: none;">
+                                    <div class="modal-content">
+                                        <span class="close">&times;</span>
+                                            <p>{{ movie.description }}</p>
+                                     </div>
+                                </div>
+                                
+                        </div>
+                    </div>
+                
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js')}}"></script>
+</body>
+</html>
